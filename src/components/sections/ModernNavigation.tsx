@@ -52,11 +52,17 @@ export default function ModernNavigation() {
         }`}
     >
       <div className="container flex items-center justify-between">
-        <Link href="/" className="flex flex-col">
-          <span className={`font-serif text-2xl md:text-3xl font-semibold tracking-tight leading-none ${isTransparent ? "drop-shadow-md" : ""}`}>
+        <Link
+          href="/"
+          className={`flex flex-col relative z-[100] transition-colors ${isOpen ? "text-foreground" : ""
+            }`}
+          onClick={() => setIsOpen(false)}
+        >
+          <span className={`font-serif text-2xl md:text-3xl font-semibold tracking-tight leading-none ${isTransparent && !isOpen ? "drop-shadow-md" : ""}`}>
             LaCrosse
           </span>
-          <span className={`text-[10px] md:text-xs uppercase tracking-[0.3em] font-light mt-1 ${isScrolledStyle ? "text-muted-foreground" : "text-white/80 drop-shadow-sm"}`}>
+          <span className={`text-[10px] md:text-xs uppercase tracking-[0.3em] font-light mt-1 ${(isScrolledStyle || isOpen) ? "text-muted-foreground" : "text-white/80 drop-shadow-sm"
+            }`}>
             Wagon Hitch
           </span>
         </Link>
@@ -81,26 +87,29 @@ export default function ModernNavigation() {
         </div>
 
         <button
-          className={`md:hidden p-2 transition-colors relative z-50 ${isScrolledStyle || isOpen ? "text-foreground" : "text-white"}`}
+          className={`md:hidden flex items-center justify-center w-12 h-12 transition-all duration-300 relative z-[100] rounded-sm border-2 ${isOpen
+            ? "border-[#A16A46] bg-transparent text-foreground"
+            : (isScrolledStyle ? "border-transparent text-foreground" : "border-transparent text-white")
+            }`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={26} strokeWidth={1.5} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-[#FBF0E2] z-40 transition-all duration-500 ease-in-out md:hidden ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 bg-[#FBF0E2] z-40 transition-all duration-500 ease-in-out md:hidden flex flex-col items-center justify-center ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           }`}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8 p-6">
+        <div className="flex flex-col items-center justify-center space-y-10 p-8 w-full">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className={`text-2xl font-serif ${pathname === link.href ? "text-accent" : "text-foreground"
+              className={`text-3xl font-serif tracking-wide transition-colors ${pathname === link.href ? "text-[#A16A46]" : "text-[#1A1A1A] hover:text-[#A16A46]"
                 }`}
             >
               {link.name}
@@ -109,7 +118,7 @@ export default function ModernNavigation() {
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="button-primary w-full max-w-xs text-center"
+            className="bg-[#1A1A1A] text-white py-4 px-12 text-center font-medium tracking-widest uppercase text-sm w-full max-w-[280px] mt-6 hover:bg-[#A16A46] transition-colors"
           >
             Book Now
           </Link>
