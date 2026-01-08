@@ -14,15 +14,12 @@ export default function ModernHero() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-black/45" />
       </div>
 
       <div className="container relative z-10 text-white">
         <div className="max-w-3xl">
-          <span className="inline-block text-accent font-medium tracking-[0.3em] uppercase text-sm mb-6 animate-fade-in">
-            Est. in Buckley, WA
-          </span>
-          <h1 className="text-5xl md:text-8xl font-serif font-medium leading-[1.1] mb-8 drop-shadow-lg">
+          <h1 className="text-5xl md:text-8xl font-serif font-medium leading-[1.1] mb-8 text-white drop-shadow-lg">
             Timeless Magic of <br />
             <span className="italic">Horse-Drawn</span> Travel
           </h1>

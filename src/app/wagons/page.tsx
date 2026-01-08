@@ -1,5 +1,4 @@
 import ModernWagons from "@/components/sections/ModernWagons";
-import ImageGallery from "@/components/ui/image-gallery";
 import Image from "next/image";
 
 export default function WagonsPage() {
@@ -17,14 +16,9 @@ export default function WagonsPage() {
           <p className="text-xl font-light uppercase tracking-[0.4em]">Wagons & Carriages</p>
         </div>
       </section>
-      
+
       <ModernWagons />
 
-      <ImageGallery 
-        title="Fleet Showcase"
-        description="A closer look at our beautifully maintained wagons and carriages, ready to make your next event truly unforgettable."
-      />
-      
       <section className="py-24 bg-[#F0D9BC]/30">
         <div className="container">
           <div className="bg-white p-12 md:p-20 text-center shadow-sm">

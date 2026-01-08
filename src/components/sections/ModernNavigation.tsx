@@ -27,7 +27,7 @@ export default function ModernNavigation() {
   }, []);
 
   const isHomePage = pathname === "/";
-  
+
   // To avoid hydration mismatch, we determine the transparency after mount
   // On server and initial client render, we default to the solid/colored state
   // This ensures consistency and then we "fade in" the transparency on the home page
@@ -43,10 +43,13 @@ export default function ModernNavigation() {
   const isScrolledStyle = !isTransparent;
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolledStyle ? "bg-[#F0D9BC]/95 backdrop-blur-md shadow-sm py-4 text-foreground" : "bg-transparent py-6 text-white"
-      }`}
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isHomePage
+        ? (scrolled
+          ? "bg-[#F0D9BC]/95 backdrop-blur-md shadow-sm py-4 text-foreground"
+          : "bg-transparent py-6 text-white")
+        : "bg-[#F0D9BC]/95 backdrop-blur-md shadow-sm py-4 text-foreground"
+        }`}
     >
       <div className="container flex items-center justify-between">
         <Link href="/" className="flex flex-col">
@@ -64,11 +67,10 @@ export default function ModernNavigation() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm uppercase tracking-widest font-medium transition-colors hover:text-accent ${
-                pathname === link.href 
-                  ? "text-accent" 
-                  : (isScrolledStyle ? "text-foreground" : "text-white drop-shadow-sm")
-              }`}
+              className={`text-sm uppercase tracking-widest font-medium transition-colors hover:text-accent ${pathname === link.href
+                ? "text-accent"
+                : (isScrolledStyle ? "text-foreground" : "text-white drop-shadow-sm")
+                }`}
             >
               {link.name}
             </Link>
@@ -79,7 +81,7 @@ export default function ModernNavigation() {
         </div>
 
         {/* Mobile Toggle */}
-        <button 
+        <button
           className={`md:hidden p-2 transition-colors ${isScrolledStyle ? "text-foreground" : "text-white"}`}
           onClick={() => setIsOpen(!isOpen)}
         >
@@ -88,10 +90,9 @@ export default function ModernNavigation() {
       </div>
 
       {/* Mobile Menu */}
-      <div 
-        className={`fixed inset-0 bg-[#FBF0E2] z-40 transition-transform duration-500 ease-in-out md:hidden ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+      <div
+        className={`fixed inset-0 bg-[#FBF0E2] z-40 transition-transform duration-500 ease-in-out md:hidden ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-8 p-6">
           {navLinks.map((link) => (
@@ -99,15 +100,14 @@ export default function ModernNavigation() {
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className={`text-2xl font-serif ${
-                pathname === link.href ? "text-accent" : "text-foreground"
-              }`}
+              className={`text-2xl font-serif ${pathname === link.href ? "text-accent" : "text-foreground"
+                }`}
             >
               {link.name}
             </Link>
           ))}
-          <Link 
-            href="/contact" 
+          <Link
+            href="/contact"
             onClick={() => setIsOpen(false)}
             className="button-primary w-full max-w-xs text-center"
           >
