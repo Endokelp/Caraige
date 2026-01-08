@@ -2,72 +2,40 @@ import React from 'react';
 
 const ContactInfo = () => {
   return (
-    <section className="contact-section py-[60px] bg-[#FDF0E1]">
-      <div className="container max-w-[1200px] mx-auto px-5 text-center">
-        {/* Spacer equivalent */}
-        <div className="h-[30px]" aria-hidden="true"></div>
-
-        <div className="space-y-6">
+    <section className="wp-block-group alignfull is-content-justification-center is-layout-constrained bg-[#FBF0E2] py-[60px]">
+      <div className="container mx-auto px-5">
+        <div className="wp-block-group is-content-justification-center is-layout-constrained flex flex-col items-center text-center space-y-6">
+          
           {/* Email and Location */}
-          <div className="text-[15px] leading-[1.6] text-black uppercase tracking-normal">
-            <p className="m-0">
-              <a 
-                href="mailto:LACROSSEWAGONHITCH@GMAIL.COM" 
-                className="text-[#A16038] no-underline hover:underline transition-all duration-200"
-              >
-                LACROSSEWAGONHITCH@GMAIL.COM
-              </a>
-              <br />
-              <span className="capitalize">Buckley, Washington</span>
-            </p>
+          <div className="text-[16px] leading-[1.6] text-black font-normal">
+            <p className="m-0 uppercase">LACROSSEWAGONHITCH@GMAIL.COM</p>
+            <p className="m-0">Buckley, Washington</p>
           </div>
 
-          {/* Social Link */}
-          <div className="text-[15px] leading-[1.6]">
-            <p className="m-0">
-              <a 
-                href="https://www.facebook.com/share/1GCDThWXAp/?mibextid=wwXIfr" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-[#A16038] no-underline hover:underline transition-all duration-200"
-              >
-                Visit LaCrosse Wagon Hitch on Facebook
-              </a>
-            </p>
-          </div>
-
-          {/* Owner Details */}
-          <div className="text-[15px] leading-[1.6] text-black">
-            <p className="m-0">
-              Beau LaCrosse, Owner
-              <br />
-              <a 
-                href="tel:2532613466" 
-                className="text-[#A16038] no-underline hover:underline transition-all duration-200"
-              >
-                (253)261-3466
-              </a>
-            </p>
-          </div>
-        </div>
-
-        {/* Footer Attribution Section */}
-        <div className="mt-12">
-          {/* Top spacer for attribution */}
-          <div className="h-[30px]" aria-hidden="true"></div>
-          
-          <p className="footer-text text-[14px] text-[#3A3A3A] m-0">
-            Designed with{' '}
+          {/* Facebook Link */}
+          <div className="text-[16px] leading-[1.6]">
             <a 
-              href="https://wordpress.com" 
-              className="text-[#A16038] no-underline hover:underline transition-all duration-200"
+              href="https://www.facebook.com/share/1GCDThWXAp/?mibextid=wwXIfr" 
+              className="text-[#A16A46] hover:opacity-80 transition-opacity underline-offset-4"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              WordPress
+              Visit LaCrosse Wagon Hitch on Facebook
             </a>
-          </p>
-          
-          {/* Bottom spacer for attribution */}
-          <div className="h-[30px]" aria-hidden="true"></div>
+          </div>
+
+          {/* Owner Info */}
+          <div className="text-[16px] leading-[1.6] text-black font-normal">
+            <p className="m-0">Beau LaCrosse, Owner</p>
+            <p className="m-0">(253)261-3466</p>
+          </div>
+
+          {/* Attribution Spacer and Link */}
+          <div className="pt-12 pb-4">
+            <p className="text-[14px] text-black font-normal m-0">
+              Designed with <a href="https://wordpress.com" className="text-[#A16A46] hover:opacity-80 transition-opacity">WordPress</a>
+            </p>
+          </div>
         </div>
       </div>
     </section>

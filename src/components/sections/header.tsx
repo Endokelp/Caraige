@@ -1,143 +1,127 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
+
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   return (
-    <header
-      id="masthead"
-      className="site-header w-full bg-[#EDD6C0] border-b border-transparent"
-    >
-      <div className="container mx-auto max-w-[1200px] px-5">
-        <div className="flex items-center justify-between h-[70px]">
-          {/* Site Title */}
-          <div className="site-branding">
-            <span className="site-title text-[24px] font-normal tracking-tight">
-              <a
-                href="/"
-                className="text-black hover:no-underline transition-colors duration-200"
-              >
-                LaCrosse Wagon Hitch
-              </a>
-            </span>
-          </div>
+    <header className="w-full bg-[#F0D9BC] border-b border-[#CCBCA4] font-sans">
+      {/* Desktop Header Container */}
+      <div className="max-w-[1240px] mx-auto px-5 lg:px-10 h-[80px] flex items-center justify-between">
+        {/* Site Identity */}
+        <div className="flex items-center">
+          <Link
+            href="/"
+            className="text-[24px] font-semibold tracking-[-0.01em] text-black hover:opacity-80 transition-opacity"
+          >
+            LaCrosse Wagon Hitch
+          </Link>
+        </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:block">
-            <ul className="flex items-center space-x-6">
-              <li
-                className="relative group"
-                onMouseEnter={() => setIsDropdownOpen(true)}
-                onMouseLeave={() => setIsDropdownOpen(false)}
-              >
-                <div className="flex items-center cursor-pointer">
-                  <a
-                    href="/"
-                    className="nav-link text-[14px] text-black hover:text-[#A16038] hover:no-underline transition-colors duration-200 py-2"
-                  >
-                    About LaCrosse Wagon Hitch
-                  </a>
-                  <ChevronDown
-                    className={`ml-1 w-4 h-4 text-black group-hover:text-[#A16038] transition-transform duration-200 ${
-                      isDropdownOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </div>
-
-                {/* Dropdown Menu */}
-                {isDropdownOpen && (
-                  <ul className="absolute left-0 top-full w-48 bg-[#EDD6C0] border border-[#d6bca3] shadow-sm z-50 animate-in fade-in slide-in-from-top-1 duration-200">
-                    <li className="border-b border-[#d6bca3] last:border-0">
-                      <a
-                        href="/about/contact"
-                        className="block px-4 py-3 text-[14px] text-black hover:bg-[#f5e4d4] hover:text-[#A16038] hover:no-underline transition-colors"
-                      >
-                        Contact
-                      </a>
-                    </li>
-                  </ul>
-                )}
-              </li>
-              <li>
-                <a
-                  href="/our-wagons-carriage"
-                  className="nav-link text-[14px] text-black hover:text-[#A16038] hover:no-underline transition-colors duration-200 py-2"
-                >
-                  Our Carriage & Wagons
-                </a>
-              </li>
-            </ul>
-          </nav>
-
-          {/* Mobile Menu Trigger */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-black focus:outline-none"
-              aria-label="Toggle Menu"
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8 h-full">
+          <div 
+            className="relative h-full flex items-center group"
+            onMouseEnter={() => setIsAboutDropdownOpen(true)}
+            onMouseLeave={() => setIsAboutDropdownOpen(false)}
+          >
+            <Link
+              href="/"
+              className="text-[14px] font-normal text-black flex items-center gap-1 hover:text-[#A16A46] transition-colors"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+              About LaCrosse Wagon Hitch
+              <ChevronDown className="w-4 h-4 text-[#000000]" />
+            </Link>
+            
+            {/* Dropdown Menu */}
+            {isAboutDropdownOpen && (
+              <div className="absolute top-[80px] left-0 bg-[#FBF0E2] border border-[#CCBCA4] min-w-[180px] z-50 shadow-sm">
+                <ul className="py-2">
+                  <li>
+                    <Link
+                      href="/about/contact"
+                      className="block px-4 py-2 text-[14px] text-black hover:bg-[#F0D9BC] hover:text-[#A16A46] transition-colors"
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
+
+          <Link
+            href="/our-wagons-carriage"
+            className="text-[14px] font-normal text-black hover:text-[#A16A46] transition-colors"
+          >
+            Our Carriage & Wagons
+          </Link>
+        </nav>
+
+        {/* Mobile Menu Toggle */}
+        <div className="md:hidden">
+          <button
+            onClick={toggleMobileMenu}
+            className="p-2 text-black"
+            aria-label="Toggle Menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Navigation Content */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-[#EDD6C0] border-t border-[#d6bca3] py-4">
-          <ul className="flex flex-col px-5 space-y-4">
-            <li>
-              <div className="flex flex-col">
-                <div className="flex items-center justify-between border-b border-[#d6bca3] pb-2">
-                  <a
-                    href="/"
-                    className="text-[14px] text-black font-normal"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    About LaCrosse Wagon Hitch
-                  </a>
-                  <button
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="p-1"
-                  >
-                    <ChevronDown
-                      size={18}
-                      className={`transition-transform duration-200 ${
-                        isDropdownOpen ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                </div>
-                {isDropdownOpen && (
-                  <ul className="pl-4 mt-2 space-y-2 border-l border-[#d6bca3]">
-                    <li>
-                      <a
-                        href="/about/contact"
-                        className="text-[13px] text-black block py-1"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        Contact
-                      </a>
-                    </li>
-                  </ul>
-                )}
+      {/* Mobile Navigation Drawer */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-[#FBF0E2] border-t border-[#CCBCA4] w-full">
+          <nav className="px-5 py-4 flex flex-col space-y-4">
+            <div className="flex flex-col">
+              <div className="flex items-center justify-between">
+                <Link
+                  href="/"
+                  className="text-[14px] font-normal text-black py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  About LaCrosse Wagon Hitch
+                </Link>
+                <button 
+                  onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
+                  className="p-2"
+                >
+                  <ChevronDown className={`w-4 h-4 transform transition-transform ${isAboutDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
               </div>
-            </li>
-            <li className="border-b border-[#d6bca3] pb-2">
-              <a
-                href="/our-wagons-carriage"
-                className="text-[14px] text-black font-normal"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Our Carriage & Wagons
-              </a>
-            </li>
-          </ul>
+              {isAboutDropdownOpen && (
+                <ul className="pl-4 border-l border-[#CCBCA4] mt-2 mb-2">
+                  <li>
+                    <Link
+                      href="/about/contact"
+                      className="block py-2 text-[14px] text-black hover:text-[#A16A46]"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </div>
+            <Link
+              href="/our-wagons-carriage"
+              className="text-[14px] font-normal text-black py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Our Carriage & Wagons
+            </Link>
+          </nav>
         </div>
       )}
     </header>

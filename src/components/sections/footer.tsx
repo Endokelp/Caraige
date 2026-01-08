@@ -4,44 +4,30 @@ const Footer = () => {
   return (
     <footer 
       id="colophon" 
-      className="site-footer bg-white border-t border-[#EDDCC4]"
+      className="site-footer bg-[#FBF0E2]"
       style={{
-        display: 'block',
+        borderTop: '1px solid #CCBCA4',
+        marginTop: '0px'
       }}
     >
-      <div 
-        className="site-below-footer-wrap"
-        style={{
-          paddingTop: '20px',
-          paddingBottom: '20px',
-        }}
-      >
-        <div className="container px-5 mx-auto max-w-[1200px]">
-          <div className="flex flex-col md:flex-row justify-center items-center text-center">
-            <div className="site-footer-below-section-1">
-              <div 
-                className="ast-footer-copyright"
-                style={{
-                  color: '#666666',
-                  fontSize: '13px',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-                  fontWeight: 400,
-                  lineHeight: '1.4',
-                }}
-              >
-                <p className="m-0">
-                  Copyright © 2026 LaCrosse Wagon Hitch | Powered by{' '}
-                  <a 
-                    href="https://wpastra.com" 
-                    className="hover:text-[#A66B3F] transition-colors duration-200"
-                    style={{ 
-                      color: 'inherit',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    Astra WordPress Theme
-                  </a>
-                </p>
+      <div className="site-below-footer-wrap py-[20px] md:py-[40px] px-[20px]">
+        <div className="max-w-[1240px] mx-auto">
+          <div className="ast-builder-footer-grid-columns items-center justify-center flex flex-col md:flex-row">
+            <div className="site-footer-below-section-1 site-footer-section text-center">
+              <div className="ast-builder-layout-element ast-flex site-footer-focus-item ast-footer-copyright">
+                <div className="ast-footer-copyright">
+                  <p className="footer-text m-0 text-[14px] leading-[1.6] text-[#666666]">
+                    Copyright © 2026 LaCrosse Wagon Hitch | Powered by{' '}
+                    <a 
+                      href="https://wpastra.com" 
+                      className="text-[#A16A46] transition-opacity duration-200 hover:opacity-80"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Astra WordPress Theme
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
