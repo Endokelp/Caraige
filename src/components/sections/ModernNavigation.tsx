@@ -26,7 +26,7 @@ export default function ModernNavigation() {
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#F0D9BC]/95 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"
+        scrolled ? "bg-[#F0D9BC]/95 backdrop-blur-md shadow-sm py-4 text-foreground" : "bg-transparent py-6 text-white"
       }`}
     >
       <div className="container flex items-center justify-between">
@@ -34,7 +34,7 @@ export default function ModernNavigation() {
           <span className="font-serif text-2xl md:text-3xl font-semibold tracking-tight leading-none">
             LaCrosse
           </span>
-          <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-light mt-1">
+          <span className={`text-[10px] md:text-xs uppercase tracking-[0.3em] font-light mt-1 ${scrolled ? "text-muted-foreground" : "text-white/80"}`}>
             Wagon Hitch
           </span>
         </Link>
@@ -46,7 +46,7 @@ export default function ModernNavigation() {
               key={link.href}
               href={link.href}
               className={`text-sm uppercase tracking-widest font-medium transition-colors hover:text-accent ${
-                pathname === link.href ? "text-accent" : "text-foreground"
+                pathname === link.href ? "text-accent" : (scrolled ? "text-foreground" : "text-white")
               }`}
             >
               {link.name}
@@ -59,7 +59,7 @@ export default function ModernNavigation() {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden p-2 text-foreground"
+          className={`md:hidden p-2 transition-colors ${scrolled ? "text-foreground" : "text-white"}`}
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
