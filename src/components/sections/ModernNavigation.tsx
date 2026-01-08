@@ -15,26 +15,32 @@ const navLinks = [
 export default function ModernNavigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent hydration mismatch by using a consistent initial state
+  const isScrolled = mounted ? scrolled : false;
+
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#F0D9BC]/95 backdrop-blur-md shadow-sm py-4 text-foreground" : "bg-transparent py-6 text-white"
+        isScrolled ? "bg-[#F0D9BC]/95 backdrop-blur-md shadow-sm py-4 text-foreground" : "bg-transparent py-6 text-white"
       }`}
     >
       <div className="container flex items-center justify-between">
         <Link href="/" className="flex flex-col">
-          <span className="font-serif text-2xl md:text-3xl font-semibold tracking-tight leading-none">
+          <span className={`font-serif text-2xl md:text-3xl font-semibold tracking-tight leading-none ${!isScrolled ? "drop-shadow-md" : ""}`}>
             LaCrosse
           </span>
-          <span className={`text-[10px] md:text-xs uppercase tracking-[0.3em] font-light mt-1 ${scrolled ? "text-muted-foreground" : "text-white/80"}`}>
+          <span className={`text-[10px] md:text-xs uppercase tracking-[0.3em] font-light mt-1 ${isScrolled ? "text-muted-foreground" : "text-white/80 drop-shadow-sm"}`}>
             Wagon Hitch
           </span>
         </Link>
@@ -46,7 +52,9 @@ export default function ModernNavigation() {
               key={link.href}
               href={link.href}
               className={`text-sm uppercase tracking-widest font-medium transition-colors hover:text-accent ${
-                pathname === link.href ? "text-accent" : (scrolled ? "text-foreground" : "text-white")
+                pathname === link.href 
+                  ? "text-accent" 
+                  : (isScrolled ? "text-foreground" : "text-white drop-shadow-sm")
               }`}
             >
               {link.name}
@@ -59,7 +67,7 @@ export default function ModernNavigation() {
 
         {/* Mobile Toggle */}
         <button 
-          className={`md:hidden p-2 transition-colors ${scrolled ? "text-foreground" : "text-white"}`}
+          className={`md:hidden p-2 transition-colors ${isScrolled ? "text-foreground" : "text-white"}`}
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
