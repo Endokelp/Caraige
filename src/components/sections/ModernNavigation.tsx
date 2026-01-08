@@ -80,10 +80,10 @@ export default function ModernNavigation() {
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
         <button
-          className={`md:hidden p-2 transition-colors ${isScrolledStyle ? "text-foreground" : "text-white"}`}
+          className={`md:hidden p-2 transition-colors relative z-50 ${isScrolledStyle || isOpen ? "text-foreground" : "text-white"}`}
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -91,7 +91,7 @@ export default function ModernNavigation() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-[#FBF0E2] z-40 transition-transform duration-500 ease-in-out md:hidden ${isOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 bg-[#FBF0E2] z-40 transition-all duration-500 ease-in-out md:hidden ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-8 p-6">

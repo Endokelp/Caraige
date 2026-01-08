@@ -19,8 +19,8 @@ export default function ModernHero() {
 
       <div className="container relative z-10 text-white">
         <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-8xl font-serif font-medium leading-[1.1] mb-8 text-white drop-shadow-lg">
-            Timeless Magic of <br />
+          <h1 className="text-4xl sm:text-5xl md:text-8xl font-serif font-medium leading-[1.1] mb-8 text-white drop-shadow-lg">
+            Timeless Magic of <br className="hidden sm:block" />
             <span className="italic">Horse-Drawn</span> Travel
           </h1>
           <p className="text-xl md:text-2xl font-light mb-10 max-w-2xl opacity-90 drop-shadow-md">
